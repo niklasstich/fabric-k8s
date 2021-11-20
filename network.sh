@@ -3,7 +3,7 @@ OPTION=$1
 install_operator() {
 
 	echo "Creating Kind cluster...";
-	kind create cluster --image=kindest/node:v1.22.2 --name fabric-ke;
+	kind create cluster --image=kindest/node:v1.22.2 --name fabric-ke --wait 60s --config=kind.yaml;
 
 	echo "Install Operator using Helm";
 	helm repo add kfs https://kfsoftware.github.io/hlf-helm-charts --force-update ;
@@ -39,7 +39,7 @@ create_CAs() {
 	kubectl wait deployment/org3-ca --for condition=available --timeout=30s;
 	kubectl wait deployment/ordererorg1-ca --for condition=available --timeout=30s;
 	echo "Waiting 20 seconds for all CAs to start successfully";
-	sleep 20s;
+	sleep 10s;
 }
 
 create_peers() {
