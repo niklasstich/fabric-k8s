@@ -1,3 +1,5 @@
+#!/bin/bash
+
 OPTION=$1
 
 install_operator() {
